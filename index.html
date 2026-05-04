@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -119,6 +119,37 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
 @media print{
   textarea{border:1px solid #ccc !important;background:#fff !important;overflow:visible !important;height:auto !important;}
 }
+ 
+/* ─── TITLE BUILDER ─── */
+.title-formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:14px;padding:10px 14px;background:#f8faff;border-radius:8px;border:1.5px solid #e0e7ff;}
+.tf-chunk{font-size:0.78rem;font-weight:800;padding:4px 10px;border-radius:20px;color:#fff;white-space:nowrap;}
+.tf-type{background:#4f46e5;}
+.tf-verb{background:#7c3aed;}
+.tf-what{background:#059669;}
+.tf-who{background:#0891b2;}
+.tf-where{background:#dc2626;}
+.tf-when{background:#d97706;}
+.tf-how{background:#92400e;}
+.tf-plus{color:#9ca3af;font-weight:700;font-size:0.85rem;}
+.title-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:560px){.title-fields{grid-template-columns:1fr;}}
+.tf-row{display:flex;flex-direction:column;gap:4px;}
+.tf-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;display:flex;align-items:center;gap:5px;}
+.tf-label .dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.dot-type{background:#4f46e5;}.dot-verb{background:#7c3aed;}.dot-what{background:#059669;}
+.dot-who{background:#0891b2;}.dot-where{background:#dc2626;}.dot-when{background:#d97706;}.dot-how{background:#92400e;}
+.tf-input{border:2px solid #e5e7eb;border-radius:7px;padding:7px 11px;font-family:inherit;font-size:0.88rem;color:var(--text);width:100%;transition:border-color 0.2s;}
+.tf-input:focus{outline:none;}
+.tf-input.type-inp:focus{border-color:#4f46e5;}.tf-input.verb-inp:focus{border-color:#7c3aed;}
+.tf-input.what-inp:focus{border-color:#059669;}.tf-input.who-inp:focus{border-color:#0891b2;}
+.tf-input.where-inp:focus{border-color:#dc2626;}.tf-input.when-inp:focus{border-color:#d97706;}
+.tf-input.how-inp:focus{border-color:#92400e;}
+.tf-row.full{grid-column:1/-1;}
+.title-preview{background:#1b4332;color:#d8f3dc;border-radius:9px;padding:12px 16px;font-size:0.9rem;font-weight:700;line-height:1.6;margin-bottom:6px;min-height:48px;word-break:break-word;}
+.title-preview-label{font-size:0.72rem;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
+.sample-title-breakdown{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;}
+.stb-chunk{font-size:0.8rem;font-weight:700;padding:3px 10px;border-radius:14px;color:#fff;}
+ 
 .word-count{text-align:right;font-size:0.78rem;color:var(--muted);margin-top:5px;font-weight:600;}
 .word-count.ok{color:var(--green-mid);}
 .total-wc{background:var(--green-pale);border-radius:8px;padding:10px 16px;text-align:center;font-weight:700;font-size:0.9rem;color:var(--green-dark);margin-bottom:20px;}
@@ -245,10 +276,14 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       </div>
       <div class="guide-body" id="guide1">
         <div class="guide-section">
-          <h4>📌 Title</h4>
+          <h4>📌 Title — Use the 5Wh + 1How Formula</h4>
           <ul>
-            <li>Include the report type and purpose.</li>
-            <li>Example: <span class="hint-tag">A Report on…</span> <span class="hint-tag">Report of Findings on…</span></li>
+            <li><span class="hint-tag" style="background:#ede9fe;color:#4f46e5">Type</span> What kind of report? → <b>Problem-Solving Report</b> (you are solving complaints)</li>
+            <li><span class="hint-tag" style="background:#ede9fe;color:#7c3aed">Verb</span> Purpose → <b>to Address / to Resolve / to Investigate</b></li>
+            <li><span class="hint-tag" style="background:#d1fae5;color:#059669">WHAT</span> The topic → <b>Customer Complaints</b></li>
+            <li><span class="hint-tag" style="background:#e0f2fe;color:#0891b2">WHO</span> The people → <b>for Shoppers</b></li>
+            <li><span class="hint-tag" style="background:#fee2e2;color:#dc2626">WHERE</span> The place → <b>at Al Ain Mall</b></li>
+            <li><span class="hint-tag" style="background:#fef3c7;color:#92400e">HOW</span> The method → <b>Using a Customer Survey</b></li>
           </ul>
         </div>
         <div class="guide-section">
@@ -289,10 +324,10 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
  
     <!-- Writing Sections -->
     <div class="writing-section">
-      <div class="ws-header"><div class="ws-num">1</div><div><div class="ws-heading">Title</div><div class="ws-sub">Write the report title (report type + purpose)</div></div></div>
+      <div class="ws-header"><div class="ws-num">1</div><div><div class="ws-heading">Title</div><div class="ws-sub">Write the report title</div></div></div>
       <div class="ws-body">
-        <div class="ws-tip">💡 <b>Tip:</b> A title tells the reader what the report is about. Use "A Report on…" or "Report of Findings on…" and include the topic.</div>
-        <textarea id="a1_title" placeholder="e.g. A Report on Customer Complaints at Al Ain Mall" rows="2" oninput="autoExpand(this);updateWC('a1')"></textarea>
+        <div class="ws-tip">💡 <b>Tip:</b> Remember the title formula: Report Type + Purpose Verb + WHAT + WHO + WHERE + WHEN + HOW (where possible).</div>
+        <textarea id="a1_title" placeholder="Write your report title here…" rows="2" oninput="autoExpand(this);updateWC('a1')"></textarea>
         <div class="word-count" id="wc_a1_title">0 words</div>
       </div>
     </div>
@@ -334,7 +369,7 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="sample-body">
         <div class="sample-part">
           <h4>Title</h4>
-          <p>A Report on Customer Complaints at Al Ain Mall</p>
+          <p>A Problem-Solving Report to Address Customer Complaints for Shoppers at Al Ain Mall Using a Customer Survey</p>
         </div>
         <div class="sample-part">
           <h4>Introduction</h4>
@@ -350,7 +385,7 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
           <p>In conclusion, the main issues at Al Ain Mall are insufficient parking and overcrowding. It is recommended, firstly, that the mall expand its parking facilities or introduce a multi-storey car park. This would reduce congestion and improve the shopping experience. Secondly, it is recommended that the mall add more seating areas throughout the building, as this was the top staff suggestion and would help shoppers feel more comfortable during their visit.</p>
         </div>
         <div class="sample-note">
-          <b>📖 Why this answer works:</b> The title is clear. The introduction states the purpose, who requested the report, and what it includes. The findings describe both charts using specific numbers and percentages. The analysis sentence connects the two charts. The recommendations are clearly linked to the findings and include a justification.
+          <b>📖 Why this answer works:</b> The title follows the full formula — Type + Purpose Verb + WHAT + WHO + WHERE + HOW. The introduction states the purpose, who requested the report, and what it includes. The findings describe both charts using specific numbers and percentages. The analysis sentence connects the two charts. The recommendations are clearly linked to the findings and include a justification.
         </div>
       </div>
       <button class="next-btn" onclick="goToScreen(2)">🚀 Continue to Practice Test 1 – Ajman Campus →</button>
@@ -397,9 +432,14 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       </div>
       <div class="guide-body" id="guide2">
         <div class="guide-section">
-          <h4>📌 Title</h4>
+          <h4>📌 Title — Use the 5Wh + 1How Formula</h4>
           <ul>
-            <li>Include report type and purpose: <span class="hint-tag">A Report on Campus Upgrades at…</span></li>
+            <li><span class="hint-tag" style="background:#ede9fe;color:#4f46e5">Type</span> What kind of report? → <b>Problem-Solving Report</b> (you are identifying solutions)</li>
+            <li><span class="hint-tag" style="background:#ede9fe;color:#7c3aed">Verb</span> Purpose → <b>to Identify / to Recommend / to Propose</b></li>
+            <li><span class="hint-tag" style="background:#d1fae5;color:#059669">WHAT</span> The topic → <b>Suitable Campus Upgrades</b></li>
+            <li><span class="hint-tag" style="background:#e0f2fe;color:#0891b2">WHO</span> The people → <b>for Students</b></li>
+            <li><span class="hint-tag" style="background:#fee2e2;color:#dc2626">WHERE</span> The place → <b>at Ajman City Campus</b></li>
+            <li><span class="hint-tag" style="background:#fef3c7;color:#92400e">HOW</span> The method → <b>Using a Student Survey</b></li>
           </ul>
         </div>
         <div class="guide-section">
@@ -439,10 +479,10 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
  
     <!-- Writing Sections -->
     <div class="writing-section">
-      <div class="ws-header"><div class="ws-num">1</div><div><div class="ws-heading">Title</div><div class="ws-sub">Report type + purpose</div></div></div>
+      <div class="ws-header"><div class="ws-num">1</div><div><div class="ws-heading">Title</div><div class="ws-sub">Write the report title</div></div></div>
       <div class="ws-body">
-        <div class="ws-tip">💡 <b>Tip:</b> Use "A Report on…" and include the topic and campus name.</div>
-        <textarea id="a2_title" placeholder="e.g. A Report on Suggested Upgrades at Ajman City Campus" rows="2" oninput="autoExpand(this);updateWC('a2')"></textarea>
+        <div class="ws-tip">💡 <b>Tip:</b> Remember the title formula: Report Type + Purpose Verb + WHAT + WHO + WHERE + WHEN + HOW (where possible).</div>
+        <textarea id="a2_title" placeholder="Write your report title here…" rows="2" oninput="autoExpand(this);updateWC('a2')"></textarea>
         <div class="word-count" id="wc_a2_title">0 words</div>
       </div>
     </div>
@@ -484,7 +524,7 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="sample-body">
         <div class="sample-part">
           <h4>Title</h4>
-          <p>A Report on Suggested Campus Upgrades at Ajman City Campus</p>
+          <p>A Problem-Solving Report to Identify Suitable Campus Upgrades for Students at Ajman City Campus Using a Student Survey</p>
         </div>
         <div class="sample-part">
           <h4>Introduction</h4>
@@ -500,7 +540,7 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
           <p>In conclusion, students at Ajman City Campus most want improvements to sports and library facilities. It is recommended, firstly, that the campus invest in a library extension at an estimated cost of AED 250,000. This was the second most popular choice and offers good value compared to the sports facility. Secondly, it is recommended that the campus upgrade the student lounge, as this is a more affordable option at AED 120,000 and would benefit a large number of students daily.</p>
         </div>
         <div class="sample-note">
-          <b>📖 Why this answer works:</b> The title is specific and professional. The introduction includes who requested the report, the purpose, and the method. The findings use specific numbers from both charts. The analysis sentence compares cost vs popularity. The recommendations are clearly justified with cost and student demand evidence.
+          <b>📖 Why this answer works:</b> The title follows the full formula — Type + Purpose Verb + WHAT + WHO + WHERE + HOW. The introduction includes who requested the report, the purpose, and the method. The findings use specific numbers from both charts. The analysis sentence compares cost vs popularity. The recommendations are clearly justified with cost and student demand evidence.
         </div>
       </div>
       <button class="next-btn" onclick="goToScreen(3)">🎓 Get My Certificate of Completion →</button>
@@ -631,6 +671,22 @@ function toggleGuide(bodyId, toggleId){
 }
  
 function autoExpand(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+ 
+function buildTitle(act){
+  const g = id => (document.getElementById(act+'_t_'+id)||{}).value||'';
+  const parts = [g('type'), g('verb'), g('what'), g('who'), g('where'), g('when'), g('how')]
+    .map(s=>s.trim()).filter(Boolean);
+  const preview = document.getElementById(act+'_title_preview');
+  if(parts.length===0){ preview.textContent='Start filling in the fields above…'; }
+  else { preview.textContent = parts.join(' '); }
+  updateWC(act);
+}
+ 
+function titleText(act){
+  const p = document.getElementById(act+'_title_preview');
+  const t = p ? p.textContent : '';
+  return (t==='Start filling in the fields above…') ? '' : t;
+}
  
 function wc(text){ return text.trim()==='' ? 0 : text.trim().split(/\s+/).length; }
  
