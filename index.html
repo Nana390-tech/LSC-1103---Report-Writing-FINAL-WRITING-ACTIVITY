@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -204,9 +204,26 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
 .chart-placeholder{background:#f9fafb;border:2px dashed #d1d5db;border-radius:10px;padding:32px 16px;text-align:center;color:var(--muted);font-size:0.88rem;line-height:1.7;}
 .chart-placeholder .ph-icon{font-size:2.5rem;margin-bottom:8px;}
  
+/* ─── STUDENT REPORT DISPLAY ─── */
+.report-display{max-width:860px;margin:28px auto 0;}
+.report-display-title{font-size:1rem;font-weight:800;color:var(--green-dark);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.rd-activity{background:#fff;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:22px;overflow:hidden;box-shadow:var(--shadow);}
+.rd-act-header{background:linear-gradient(90deg,var(--green-pale),#f0fdf4);padding:13px 20px;border-bottom:1.5px solid var(--border);}
+.rd-act-header h3{font-size:0.9rem;font-weight:800;color:var(--green-dark);}
+.rd-act-header p{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.rd-section{padding:14px 20px;border-bottom:1px solid #f0fdf4;}
+.rd-section:last-child{border-bottom:none;}
+.rd-section h4{font-size:0.72rem;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:7px;}
+.rd-section p{font-size:0.92rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+.rd-empty{color:#9ca3af;font-style:italic;font-size:0.88rem;}
 @media print{
-  .app-header,.progress-bar,.name-card,.writing-section,.guide-box,.submit-btn,.next-btn,.no-print{display:none!important;}
-  .cert-box{box-shadow:none;border:3px solid #e9c46a;}
+  .no-print{display:none!important;}
+  .app-header,.progress-bar,.name-card,.guide-box,.submit-btn,.next-btn,.sample-section,.charts-section,.scenario-box,.activity-label,.total-wc,.writing-section{display:none!important;}
+  #screen1,#screen2{display:none!important;}
+  #screen3{display:block!important;}
+  .report-display{margin-top:20px;}
+  .rd-activity{break-inside:avoid;border:1.5px solid #d1fae5;}
+  .rd-act-header{background:#d8f3dc !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
 </style>
 </head>
@@ -585,7 +602,34 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       </div>
     </div>
  
-    <button class="print-btn no-print" onclick="printCert()">🖨️ Print Certificate / Save as PDF</button>
+    <button class="print-btn no-print" onclick="printCert()">🖨️ Print Certificate + My Reports / Save as PDF</button>
+ 
+    <!-- Student's own written reports -->
+    <div class="report-display" id="reportDisplay">
+      <div class="report-display-title">📝 My Written Reports – Evidence of Completion</div>
+ 
+      <div class="rd-activity">
+        <div class="rd-act-header">
+          <h3>🏬 Practice Test 2 – Al Ain Mall Customer Complaints Report</h3>
+          <p>Student: <span id="rd_name1"></span> &nbsp;|&nbsp; Date: <span id="rd_date1"></span></p>
+        </div>
+        <div class="rd-section"><h4>Title</h4><p id="rd_a1_title" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Introduction</h4><p id="rd_a1_intro" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Findings and Analysis</h4><p id="rd_a1_findings" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Conclusions and Recommendations</h4><p id="rd_a1_conc" class="rd-empty">—</p></div>
+      </div>
+ 
+      <div class="rd-activity">
+        <div class="rd-act-header">
+          <h3>🎓 Practice Exam 1 – Ajman City Campus Upgrades Report</h3>
+          <p>Student: <span id="rd_name2"></span> &nbsp;|&nbsp; Date: <span id="rd_date2"></span></p>
+        </div>
+        <div class="rd-section"><h4>Title</h4><p id="rd_a2_title" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Introduction</h4><p id="rd_a2_intro" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Findings and Analysis</h4><p id="rd_a2_findings" class="rd-empty">—</p></div>
+        <div class="rd-section"><h4>Conclusions and Recommendations</h4><p id="rd_a2_conc" class="rd-empty">—</p></div>
+      </div>
+    </div>
   </div>
  
 </div><!-- end main -->
@@ -732,7 +776,26 @@ function goToScreen(n){
     markStep(2);
     document.getElementById('step3').classList.add('active');
     document.getElementById('line2').classList.add('done');
-    document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    const dateStr = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    document.getElementById('certDate').textContent = dateStr;
+    // Populate student report display
+    const name = document.getElementById('studentName').value || '—';
+    ['rd_name1','rd_name2'].forEach(id=>document.getElementById(id).textContent=name);
+    ['rd_date1','rd_date2'].forEach(id=>document.getElementById(id).textContent=dateStr);
+    const fields = [
+      ['a1_title','a1_intro','a1_findings','a1_conc'],
+      ['a2_title','a2_intro','a2_findings','a2_conc']
+    ];
+    fields.forEach((act,ai)=>{
+      act.forEach(fid=>{
+        const src = document.getElementById(fid);
+        const dst = document.getElementById('rd_'+fid);
+        if(!src||!dst) return;
+        const text = src.value.trim();
+        dst.textContent = text || '—';
+        dst.className = text ? '' : 'rd-empty';
+      });
+    });
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -743,26 +806,44 @@ function syncName(){
 }
  
 function printCert(){
-  const box = document.getElementById('certBox');
+  const cert = document.getElementById('certBox');
+  const reports = document.getElementById('reportDisplay');
   const w = window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;padding:30px;background:#fffdf5;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;font-family:'Nunito',sans-serif;}
-    @media print{body{padding:0;background:#fff;} @page{margin:10mm;size:A4 landscape;}}
-    .cert-box{background:#fff;border:3px solid #e9c46a;border-radius:20px;padding:50px 60px;max-width:760px;width:100%;box-shadow:0 8px 40px rgba(233,196,106,0.25);text-align:center;position:relative;overflow:hidden;}
-    .cert-emblem{font-size:3.5rem;margin-bottom:8px;}
-    .cert-sub{font-size:0.85rem;font-weight:700;color:#40916c;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
-    .cert-certifies{font-size:1rem;color:#6b7280;margin-bottom:10px;}
-    .cert-name{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:#1b4332;margin-bottom:20px;}
-    .cert-desc{font-size:1rem;color:#1b4332;line-height:1.7;margin-bottom:24px;}
-    .cert-activities{display:flex;justify-content:center;gap:20px;margin-bottom:24px;}
-    .cert-act-badge{background:#d8f3dc;border:2px solid #74c69d;border-radius:12px;padding:12px 20px;font-size:0.85rem;font-weight:700;color:#1b4332;}
-    .act-icon{font-size:1.5rem;display:block;margin-bottom:4px;}
-    hr{border:none;border-top:2px solid #e9c46a;margin:20px 0;}
-    .cert-footer{display:flex;justify-content:space-between;align-items:flex-end;font-size:0.82rem;color:#6b7280;}
-    .cert-sig{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1b4332;}
-  </style></head><body>${box.outerHTML}</body></html>`);
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:#fffdf5;padding:24px;}
+    @media print{body{padding:0;background:#fff;} @page{margin:12mm;}}
+    /* Certificate */
+    .cert-box{background:#fff;border:3px solid #e9c46a;border-radius:20px;padding:40px 50px;max-width:760px;margin:0 auto 32px;text-align:center;position:relative;}
+    .cert-emblem{font-size:3rem;margin-bottom:6px;}
+    .cert-sub{font-size:0.8rem;font-weight:700;color:#40916c;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+    .cert-certifies{font-size:0.95rem;color:#6b7280;margin-bottom:8px;}
+    .cert-name{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:#1b4332;margin-bottom:16px;}
+    .cert-desc{font-size:0.95rem;color:#1b4332;line-height:1.7;margin-bottom:20px;}
+    .cert-activities{display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
+    .cert-act-badge{background:#d8f3dc;border:2px solid #74c69d;border-radius:12px;padding:10px 16px;font-size:0.82rem;font-weight:700;color:#1b4332;text-align:center;}
+    .act-icon{font-size:1.3rem;display:block;margin-bottom:3px;}
+    .cert-divider{border:none;border-top:2px solid #e9c46a;margin:16px 0;}
+    .cert-footer{display:flex;justify-content:space-between;align-items:flex-end;font-size:0.78rem;color:#6b7280;}
+    .cert-sig{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#1b4332;}
+    /* Reports */
+    .report-display{max-width:760px;margin:0 auto;}
+    .report-display-title{font-size:1rem;font-weight:800;color:#1b4332;margin-bottom:14px;}
+    .rd-activity{background:#fff;border:1.5px solid #d1fae5;border-radius:12px;margin-bottom:18px;overflow:hidden;break-inside:avoid;}
+    .rd-act-header{background:#d8f3dc;padding:11px 18px;border-bottom:1px solid #d1fae5;}
+    .rd-act-header h3{font-size:0.88rem;font-weight:800;color:#1b4332;}
+    .rd-act-header p{font-size:0.75rem;color:#6b7280;margin-top:2px;}
+    .rd-section{padding:11px 18px;border-bottom:1px solid #f0fdf4;}
+    .rd-section:last-child{border-bottom:none;}
+    .rd-section h4{font-size:0.68rem;font-weight:800;color:#2d6a4f;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
+    .rd-section p{font-size:0.9rem;line-height:1.75;color:#1a1a1a;white-space:pre-wrap;word-break:break-word;}
+    .rd-empty{color:#9ca3af;font-style:italic;}
+  </style></head><body>
+  ${cert.outerHTML}
+  ${reports.innerHTML}
+  </body></html>`);
   w.document.close();
   setTimeout(()=>w.print(),700);
 }
