@@ -204,7 +204,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
 .chart-placeholder{background:#f9fafb;border:2px dashed #d1d5db;border-radius:10px;padding:32px 16px;text-align:center;color:var(--muted);font-size:0.88rem;line-height:1.7;}
 .chart-placeholder .ph-icon{font-size:2.5rem;margin-bottom:8px;}
  
-/* ─── STUDENT REPORT DISPLAY ─── */
+/* ─── HEADING REMINDER ─── */
+.heading-reminder{display:flex;align-items:center;gap:10px;background:#f0fdf4;border:1.5px solid var(--green-light);border-radius:8px;padding:9px 13px;margin-bottom:10px;}
+.heading-reminder .hr-label{font-size:0.75rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.heading-reminder .hr-heading{font-size:0.92rem;font-weight:800;color:var(--green-dark);letter-spacing:0.2px;}
+.heading-reminder .hr-note{font-size:0.72rem;color:var(--green);font-weight:600;margin-left:auto;white-space:nowrap;}
 .report-display{max-width:860px;margin:28px auto 0;}
 .report-display-title{font-size:1rem;font-weight:800;color:var(--green-dark);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .rd-activity{background:#fff;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:22px;overflow:hidden;box-shadow:var(--shadow);}
@@ -349,6 +353,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">2</div><div><div class="ws-heading">Introduction</div><div class="ws-sub">1 paragraph · aim: ~50 words</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> Who asked for the report | The purpose | A summary of what is included</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Introduction</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a1_intro" placeholder="This report was requested by the Al Ain Mall Director. The purpose of this report is to…" rows="5" oninput="autoExpand(this);updateWC('a1')"></textarea>
         <div class="word-count" id="wc_a1_intro">0 words</div>
       </div>
@@ -358,6 +367,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">3</div><div><div class="ws-heading">Findings and Analysis</div><div class="ws-sub">1–2 paragraphs · aim: ~100 words</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> How data was collected | Chart 1 key numbers | Chart 2 key percentages | One analysis sentence</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Findings And Analysis</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a1_findings" placeholder="A survey of 158 shoppers was conducted to collect data on customer complaints…" rows="8" oninput="autoExpand(this);updateWC('a1')"></textarea>
         <div class="word-count" id="wc_a1_findings">0 words</div>
       </div>
@@ -367,6 +381,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">4</div><div><div class="ws-heading">Conclusions and Recommendations</div><div class="ws-sub">1 paragraph · aim: ~80 words · make 2 recommendations</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> Summary of main problems | Recommendation 1 + reason | Recommendation 2 + reason</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Conclusions And Recommendations</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a1_conc" placeholder="In conclusion, the main issues at Al Ain Mall are… It is recommended, firstly, that…" rows="7" oninput="autoExpand(this);updateWC('a1')"></textarea>
         <div class="word-count" id="wc_a1_conc">0 words</div>
       </div>
@@ -504,6 +523,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">2</div><div><div class="ws-heading">Introduction</div><div class="ws-sub">1 paragraph · aim: ~50 words</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> Who requested the report | Purpose | How data was collected</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Introduction</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a2_intro" placeholder="This report was requested by the Student Services Director. The purpose of this report is to…" rows="5" oninput="autoExpand(this);updateWC('a2')"></textarea>
         <div class="word-count" id="wc_a2_intro">0 words</div>
       </div>
@@ -513,6 +537,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">3</div><div><div class="ws-heading">Findings and Analysis</div><div class="ws-sub">1–2 paragraphs · aim: ~100 words</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> Chart 1 top suggestions with numbers | Chart 2 estimated costs | Analysis sentence linking both charts</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Findings And Analysis</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a2_findings" placeholder="According to Chart 1, the most popular suggestion was… with … students voting for it…" rows="8" oninput="autoExpand(this);updateWC('a2')"></textarea>
         <div class="word-count" id="wc_a2_findings">0 words</div>
       </div>
@@ -522,6 +551,11 @@ textarea:focus{outline:none;border-color:var(--green-mid);}
       <div class="ws-header"><div class="ws-num">4</div><div><div class="ws-heading">Conclusions and Recommendations</div><div class="ws-sub">1 paragraph · aim: ~80 words · make 2 recommendations</div></div></div>
       <div class="ws-body">
         <div class="ws-tip">💡 <b>Include:</b> Summary of findings | Recommendation 1 + cost justification | Recommendation 2 + reason</div>
+        <div class="heading-reminder">
+          <span class="hr-label">✏️ Start with heading:</span>
+          <span class="hr-heading">Conclusions And Recommendations</span>
+          <span class="hr-note">Each Word Starts With A Capital Letter</span>
+        </div>
         <textarea id="a2_conc" placeholder="In conclusion, the survey shows that students most want… It is recommended, firstly, that the campus…" rows="7" oninput="autoExpand(this);updateWC('a2')"></textarea>
         <div class="word-count" id="wc_a2_conc">0 words</div>
       </div>
@@ -853,4 +887,3 @@ document.querySelectorAll('textarea').forEach(t=>{t.addEventListener('input',()=
 </script>
 </body>
 </html>
- 
